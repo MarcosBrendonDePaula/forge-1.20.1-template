@@ -1,73 +1,62 @@
-# This is an example mods.toml file. It contains the data relating to the loading mods.
-# There are several mandatory fields (#mandatory), and many more that are optional (#optional).
-# The overall format is standard TOML format, v0.5.0.
-# Note that there are a couple of TOML lists in this file.
-# Find more information on toml format here:  https://github.com/toml-lang/toml
-# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
-modLoader="javafml" #mandatory
-# A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="${loader_version_range}" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
-# The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
-# Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="${mod_license}"
-# A URL to refer people to when problems occur with this mod
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
-# If your mod is purely client-side and has no multiplayer functionality (be it dedicated servers or Open to LAN),
-# set this to true, and Forge will set the correct displayTest for you and skip loading your mod on dedicated servers.
-#clientSideOnly=true #optional - defaults to false if absent
-# A list of mods - how many allowed here is determined by the individual mod loader
-[[mods]] #mandatory
-# The modid of the mod
-modId="${mod_id}" #mandatory
-# The version number of the mod
-version="${mod_version}" #mandatory
-# A display name for the mod
-displayName="${mod_name}" #mandatory
-# A URL to query for updates for this mod. See the JSON update specification https://docs.minecraftforge.net/en/latest/misc/updatechecker/
-#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
-# A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
-# A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
-# A text field displayed in the mod UI
-#credits="" #optional
-# A text field displayed in the mod UI
-authors="${mod_authors}" #optional
-# Display Test controls the display for your mod in the server connection screen
-# MATCH_VERSION means that your mod will cause a red X if the versions on client and server differ. This is the default behaviour and should be what you choose if you have server and client elements to your mod.
-# IGNORE_SERVER_VERSION means that your mod will not cause a red X if it's present on the server but not on the client. This is what you should use if you're a server only mod.
-# IGNORE_ALL_VERSION means that your mod will not cause a red X if it's present on the client or the server. This is a special case and should only be used if your mod has no server component.
-# NONE means that no display test is set on your mod. You need to do this yourself, see IExtensionPoint.DisplayTest for more information. You can define any scheme you wish with this value.
-# IMPORTANT NOTE: this is NOT an instruction as to which environments (CLIENT or DEDICATED SERVER) your mod loads on. Your mod should load (and maybe do nothing!) whereever it finds itself.
-#displayTest="MATCH_VERSION" # if nothing is specified, MATCH_VERSION is the default when clientSideOnly=false, otherwise IGNORE_ALL_VERSION when clientSideOnly=true (#optional)
+# This is the mods.toml file. It contains the metadata for your mod.
+# The file format is TOML. For more information, see https://github.com/toml-lang/toml
 
-# The description text for the mod (multi line!) (#mandatory)
-description='''${mod_description}'''
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.${mod_id}]] #optional
-    # the modid of the dependency
-    modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="${forge_version_range}" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the dependency is not mandatory
-    # BEFORE - This mod is loaded BEFORE the dependency
-    # AFTER - This mod is loaded AFTER the dependency
+# Mandatory display name for your mod. This is the name that will be shown to the user.
+modLoader="javafml"
+
+# Mandatory loader version specification. This specifies the version range of the loader that your mod requires.
+# The recommended range for 1.20.1 is [47,).
+loaderVersion="[47,)"
+
+# Mandatory license specification for your mod. This is the license under which your mod is distributed.
+license="All Rights Reserved" # Example: "MIT", "GPLv3", "All Rights Reserved"
+
+# A list of mods - Mandatory
+[[mods]]
+# Mandatory mod ID for your mod. This is the unique identifier for your mod.
+modId="yourmodid"
+
+# Mandatory version specification for your mod. This is the version of your mod.
+# It is recommended to use the ${file.jarVersion} variable, which is automatically replaced by Gradle.
+version="${file.jarVersion}"
+
+# Mandatory display name for your mod. This is the name that will be shown to the user.
+displayName="Your Mod Name"
+
+# Optional URL to your mod's update checker JSON file. This allows Forge to check for updates for your mod.
+# updateJSONURL="https://change.me.to.your.update.json.example.invalid/"
+
+# Optional URL to your mod's homepage. This is the URL that will be opened when the user clicks on your mod in the mod list.
+# displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
+
+# Optional path to your mod's logo file. This is the logo that will be shown in the mod list.
+# logoFile="yourmodid_logo.png"
+
+# Optional credits specification for your mod. This is where you can thank people who helped you create your mod.
+# credits="Thanks for this example mod goes to Java"
+
+# Optional authors specification for your mod. This is the list of authors who created your mod.
+authors="Your Name"
+
+# Mandatory description for your mod. This is the description that will be shown to the user.
+# It can be multi-line by using triple single quotes.
+description=\'\'\'A brief description of your mod.
+Use newlines for longer descriptions.\'\'\'
+
+# A list of dependencies for your mod - Optional
+[[dependencies.yourmodid]] # The modId of the mod you depend on
+    modId="forge" # Mandatory
+    mandatory=true # Mandatory
+    # The version range of the dependency. Recommended range for 1.20.1 is [47,)
+    versionRange="[47,)" # Mandatory
     ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT, or SERVER
     side="BOTH"
-# Here's another dependency
-[[dependencies.${mod_id}]]
-    modId="minecraft"
+
+[[dependencies.yourmodid]]
+    modId="minecraft" # Mandatory
     mandatory=true
-    # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="${minecraft_version_range}"
+    # The version range of the dependency. Recommended range for 1.20.1 is [1.20.1,1.21)
+    versionRange="[1.20.1,1.21)" # Mandatory
     ordering="NONE"
     side="BOTH"
 
-# Features are specific properties of the game environment, that you may want to declare you require. This example declares
-# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
-# stop your mod loading on the server for example.
-#[features.${mod_id}]
-#openGLVersion="[3.2,)"
