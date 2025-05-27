@@ -1,16 +1,23 @@
 package com.yourname.yourmodid.client.model;
 
+import com.yourname.yourmodid.YourModName;
 import com.yourname.yourmodid.common.entity.ExampleMobEntity;
 import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
 
 // Placeholder Model Class - Replace with your actual model logic (e.g., using Blockbench)
 public class ExampleMobModel<T extends ExampleMobEntity> extends HierarchicalModel<T> {
+    
+    // Define the layer location for the model
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
+            new ResourceLocation(YourModName.MODID, "example_mob"), "main");
 
     private final ModelPart root;
     // Define other parts like head, body, legs, etc.
@@ -50,4 +57,3 @@ public class ExampleMobModel<T extends ExampleMobEntity> extends HierarchicalMod
         // Example: this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
     }
 }
-

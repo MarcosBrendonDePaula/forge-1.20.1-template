@@ -16,8 +16,6 @@ public class ExampleMobRenderer extends MobRenderer<ExampleMobEntity, ExampleMob
     public ExampleMobRenderer(EntityRendererProvider.Context pContext) {
         // The second argument is the model instance, the third is the shadow radius
         super(pContext, new ExampleMobModel<>(pContext.bakeLayer(ExampleMobModel.LAYER_LOCATION)), 0.5f); // Use the LayerLocation defined in your model class
-        // TODO: Define ExampleMobModel.LAYER_LOCATION in ExampleMobModel.java
-        // Example: public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(YourModName.MODID, "example_mob"), "main");
 
     }
 
@@ -28,4 +26,3 @@ public class ExampleMobRenderer extends MobRenderer<ExampleMobEntity, ExampleMob
 
     // You can override other methods here for custom rendering logic, like adding layers (e.g., armor, overlays)
 }
-

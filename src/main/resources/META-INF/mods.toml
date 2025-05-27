@@ -17,8 +17,8 @@ license="All Rights Reserved" # Example: "MIT", "GPLv3", "All Rights Reserved"
 modId="yourmodid"
 
 # Mandatory version specification for your mod. This is the version of your mod.
-# It is recommended to use the ${file.jarVersion} variable, which is automatically replaced by Gradle.
-version="${file.jarVersion}"
+# It is recommended to use the mod_version variable from gradle.properties.
+version="${mod_version}"
 
 # Mandatory display name for your mod. This is the name that will be shown to the user.
 displayName="Your Mod Name"
@@ -59,4 +59,3 @@ Use newlines for longer descriptions.\'\'\'
     versionRange="[1.20.1,1.21)" # Mandatory
     ordering="NONE"
     side="BOTH"
-
